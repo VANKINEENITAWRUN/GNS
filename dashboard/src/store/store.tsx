@@ -8,7 +8,7 @@ const defaultState = {
   repoSettings: {}
 };
 
-const store = createStore((state, action) => {
+const store = createStore((state, action: any) => {
   if (action.type === 'setRepos') {
     return { ...state, repos: action.repos, gotRepos: true };
   } else if (action.type === 'setRepoSettings') {
@@ -31,7 +31,7 @@ export const storeGetRepos = passedStore => {
 
   passedStore.dispatch({
     type: 'setRepos',
-    repos: repos
+    repos
   });
 };
 
@@ -49,7 +49,7 @@ export const storeGetRepoSettings = (passedStore, repo) => {
 
   passedStore.dispatch({
     type: 'setRepoSettings',
-    repo: repo,
+    repo,
     settings: rs
   });
 };

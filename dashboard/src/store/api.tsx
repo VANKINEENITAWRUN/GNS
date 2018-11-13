@@ -1,7 +1,7 @@
 /** Returns list of repositores
  * @return {Array<String>}
  */
-export const apiGetRepos = () => [
+export const apiGetRepos = (): Array<string> => [
   'hellomouse/GNS',
   'hellomouse/wtk',
   'handicraftsman/heliumbot'
@@ -11,7 +11,7 @@ export const apiGetRepos = () => [
  * @param {String} repo
  * @return {Object}
  */
-export const apiGetRepoSettings = repo => {
+export const apiGetRepoSettings = (repo: string): object => {
   return {
     enabled: true,
     ircHost: 'irc.freenode.net',

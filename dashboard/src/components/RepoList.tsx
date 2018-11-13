@@ -11,8 +11,11 @@ import { connect } from 'react-redux';
 
 import store, { storeGetRepos } from '../store/store';
 
+interface RepoListProps {
+  repos: string[];
+}
 /** Provides list of available repositories */
-class RepoList extends React.Component {
+class RepoList extends React.Component<any, any> {
   static propTypes = {
     repos: PropTypes.array.isRequired,
     gotRepos: PropTypes.bool.isRequired,
@@ -20,10 +23,10 @@ class RepoList extends React.Component {
   };
 
   /** Renders the component
-   * @return {React.ReactElement}
+   * @return {React.ReactNode}
    */
-  render() {
-    if (this.props.gotRepos) {
+  render(): React.ReactNode {
+    if ((this.props as any).gotRepos) {
       return (
         <List>
           {this.props.repos.map(repo =>
@@ -49,7 +52,8 @@ class RepoList extends React.Component {
  * @param {Object} state
  * @return {Object}
  */
-const mapStateToProps = state => {
+// tslint:disable-next-line:ban-types
+const mapStateToProps = (state: any): any => {
   return {
     repos: state.repos,
     gotRepos: state.gotRepos

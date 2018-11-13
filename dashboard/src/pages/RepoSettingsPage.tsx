@@ -26,14 +26,14 @@ class RepoSettingsPage extends React.Component {
   };
 
   /** Renders the component
-   * @return {React.ReactElement}
+   * @return {React.ReactNode}
    */
-  render() {
+  render(): React.ReactNode {
     return (
       <React.Fragment>
-        <Button variant="extendedFab" color="primary" className="back-btn"><ArrowBack/> Back</Button>
-        <Paper className="app-paper">
-          <Typography variant="title">
+        <Button variant='extendedFab' color='primary' className='back-btn'><ArrowBack/> Back</Button>
+        <Paper className='app-paper'>
+          <Typography variant='title'>
           Settings for {this.props.match.params.rUser}/{this.props.match.params.rName}
           </Typography>
 
@@ -44,37 +44,36 @@ class RepoSettingsPage extends React.Component {
               control={
                 <Switch />
               }
-              label="Enable this repository"
+              label='Enable this repository'
             />
-            <div className="sameline">
-              <TextField className="rsp-entry input-margin" id="ircHost" label="IRC server host"
+            <div className='sameline'>
+              <TextField className='rsp-entry input-margin' id='ircHost' label='IRC server host'
                 style={{ width: '180%' }} />
-              <TextField className="rsp-entry input-margin" id="ircPort" label="IRC server port" type="number" />
+              <TextField className='rsp-entry input-margin' id='ircPort' label='IRC server port' type='number' />
             </div>
-            <div className="sameline">
-              <TextField className="rsp-entry input-margin" id="ircNick" label="IRC nickname" />
-              <TextField className="rsp-entry input-margin" id="ircUser" label="IRC username/ident" />
+            <div className='sameline'>
+              <TextField className='rsp-entry input-margin' id='ircNick' label='IRC nickname' />
+              <TextField className='rsp-entry input-margin' id='ircUser' label='IRC username/ident' />
             </div>
-            <div className="sameline">
-              <TextField className="rsp-entry input-margin" id="ircPass" label="IRC password (leave blank for none)" />
-              <TextField className="rsp-entry input-margin" id="ircRnam" label="IRC realname/gecos" />
+            <div className='sameline'>
+              <TextField className='rsp-entry input-margin' id='ircPass' label='IRC password (leave blank for none)' />
+              <TextField className='rsp-entry input-margin' id='ircRnam' label='IRC realname/gecos' />
             </div>
-            <div className="sameline">
-              <TextField className="rsp-entry input-margin" id="ircChannel" label="IRC channel" />
+            <div className='sameline'>
+              <TextField className='rsp-entry input-margin' id='ircChannel' label='IRC channel' />
             </div>
             <Divider style={{ margin: '0 20px' }}/>
             <br /><br />
             <FormGroup>
-              <Typography variant="subheading">Events</Typography>
+              <Typography variant='subheading'>Events</Typography>
               <FormControlLabel
                 control={
                   <Checkbox />
                 }
-                label="Subscribe to this event"
+                label='Subscribe to this event'
               />
             </FormGroup>
           </FormGroup>
-
 
         </Paper>
       </React.Fragment>
@@ -91,7 +90,7 @@ class RepoSettingsPage extends React.Component {
  * @param {Object} state
  * @return {Object}
  */
-const mapStateToProps = state => {
+const mapStateToProps = (state: {[key: string]: any}): {[key: string]: any} => {
   return {
     repoSettings: state.repoSettings
   };
