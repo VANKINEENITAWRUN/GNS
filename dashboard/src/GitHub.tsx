@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 * @param {*} props
 * @return {React.ReactElement}
 */
-function GitHub(props: any): React.ReactElement<any> {
+const GitHub: React.FunctionComponent<any> = props => {
   return (
     <a href='/login' className='login-button'>
       <Button className='login-button-btn' variant='contained' color='primary' {...props}>
@@ -20,6 +20,6 @@ function GitHub(props: any): React.ReactElement<any> {
       </Button>
     </a>
   );
-}
+};
 
 export default GitHub;

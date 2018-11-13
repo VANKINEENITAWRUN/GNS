@@ -13,17 +13,17 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import store, { storeGetRepoSettings } from '../store/store';
+import store, { storeGetRepoSettings, Store } from '../store/store';
 
 /** Repo settings page of the app */
-class RepoSettingsPage extends React.Component {
-  static propTypes = {
+class RepoSettingsPage extends React.Component<RouteComponentProps<{rUser: string; rName: string}>, any> {
+  /*static propTypes = {
     match: PropTypes.object.isRequired,
     repoSettings: PropTypes.object.isRequired
-  };
+  };*/
 
   /** Renders the component
    * @return {React.ReactNode}
@@ -90,7 +90,7 @@ class RepoSettingsPage extends React.Component {
  * @param {Object} state
  * @return {Object}
  */
-const mapStateToProps = (state: {[key: string]: any}): {[key: string]: any} => {
+const mapStateToProps = (state: Store): {repoSettings: Store['repoSettings']} => {
   return {
     repoSettings: state.repoSettings
   };

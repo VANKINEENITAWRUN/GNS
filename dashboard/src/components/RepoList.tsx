@@ -6,27 +6,29 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
+import redux from 'redux';
 
-import store, { storeGetRepos } from '../store/store';
+import store, { storeGetRepos, Store } from '../store/store';
+import { getTokenSourceMapRange } from 'typescript';
 
 interface RepoListProps {
   repos: string[];
 }
 /** Provides list of available repositories */
-class RepoList extends React.Component<any, any> {
-  static propTypes = {
+class RepoList extends React.Component<RouteComponentProps & {repos: string[], gotRepos: boolean}|undefined> {
+  /*static propTypes = {
     repos: PropTypes.array.isRequired,
     gotRepos: PropTypes.bool.isRequired,
     history: PropTypes.object.isRequired
-  };
+  };*/
 
   /** Renders the component
    * @return {React.ReactNode}
    */
   render(): React.ReactNode {
-    if ((this.props as any).gotRepos) {
+    if (this.props.gotRepos) {
       return (
         <List>
           {this.props.repos.map(repo =>
@@ -49,11 +51,11 @@ class RepoList extends React.Component<any, any> {
 }
 
 /** Maps redux state to RepoList props
- * @param {Object} state
- * @return {Object}
+ * @param {Store} state
+ * @return {Object<string, string[] | boolean}
  */
 // tslint:disable-next-line:ban-types
-const mapStateToProps = (state: any): any => {
+const mapStateToProps = (state: Store): {repos: string[], gotRepos: boolean} => {
   return {
     repos: state.repos,
     gotRepos: state.gotRepos

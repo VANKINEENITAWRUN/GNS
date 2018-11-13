@@ -1,6 +1,16 @@
-import { createStore } from 'redux';
+import redux, { createStore } from 'redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import { apiGetRepos, apiGetRepoSettings } from './api';
+import { Config } from './config';
+
+export interface Store {
+  repos: string[] | [];
+  gotRepos: boolean;
+  repoSettings: {
+    [key: string]: Config;
+  };
+}
 
 const defaultState = {
   repos: [],
@@ -16,12 +26,12 @@ const store = createStore((state, action: any) => {
   }
 
   return state;
-}, defaultState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+}, defaultState, devToolsEnhancer({}));
 
 /** Gets repository list
  * @param {Object} passedStore
  */
-export const storeGetRepos = passedStore => {
+export const storeGetRepos = (passedStore: redux.Store<Store>) => {
   let st = passedStore.getState();
 
   if (st.gotRepos) {
@@ -39,7 +49,7 @@ export const storeGetRepos = passedStore => {
  * @param {Object} passedStore
  * @param {String} repo
  */
-export const storeGetRepoSettings = (passedStore, repo) => {
+export const storeGetRepoSettings = (passedStore: redux.Store<Store>, repo: string) => {
   let st = passedStore.getState();
 
   if (st.repoSettings[repo]) {
